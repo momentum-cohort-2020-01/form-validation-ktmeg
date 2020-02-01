@@ -24,7 +24,11 @@ parkingForm.addEventListener("submit", function (e) {
         else {
             box.parentElement.classList.add("input-invalid")
             console.log(box, "invalid")
-              
+             
+            if (box.value == "") {
+                console.log("is required");
+                
+            }
             
 
         }    
