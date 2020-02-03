@@ -12,7 +12,7 @@
 let parkingForm = document.querySelector("#parking-form");
 let boxes = document.querySelectorAll(".box");
 console.log(boxes);
-let errorMessages = document.querySelectorAll(".message")
+let errorMessages = document.querySelectorAll(".input-field")
 
 parkingForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -20,11 +20,27 @@ parkingForm.addEventListener("submit", function (e) {
         if (box.value !== "") {
             box.parentElement.classList.add("input-valid")
             console.log(box, "valid")
-        }
-        else {
+        } else {
             box.parentElement.classList.add("input-invalid");
             console.log(box, "invalid");
-            box.insertAdjacentHTML("afterend", " is required");
+
+            // for (let message of errorMessages) {
+            // for (let message = 0; i < message.length; message++) {
+           
+            // this works, but adds with every submit//
+            // box.insertAdjacentHTML("afterend", " is required"); 
+        
+            document.body.onload = addElement;
+            function addElement(){
+            let newDiv = document.createElement("div");
+            let message = document.createTextNode("This field is required!");
+            newDiv.appendChild(message);
+            document.body.insertAfter(newDiv, errorMessages);
+
+        }    
+        
+        }
+        }
             //afterbegin does not allow text on form, but shows in console.log//
 
             // for(let msg of errorMessages);
@@ -32,8 +48,5 @@ parkingForm.addEventListener("submit", function (e) {
             //     console.log("is required");
             //     msg.insertAdjacentHTML("afterend", " is required");
 
-            }
-
-
-        }
-    })
+            
+            })
